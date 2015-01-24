@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 1000
+            });
+    });
+    </script>
+    </head>
+    <body>
+       <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              status     : true,
+              appId      : '736767753043080',
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+            <div class="col-lg-10">
+                <h3>Search Your Property Here</h3>
+            </div>
+            <br>
+            <form class="form-inline" role="form" id="submitForm" method="post">
+                <div class="form-group col-lg-3">
+                    <label for="streetAddress" class="control-label">Street Address *:</label>
+                    <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="Address"  required>
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="city" class="control-label">City *:</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                </div>
+                <div class="form-group col-lg-2">
+                    <label for="state" class="control-label">State *:</label>
+                    <select class="form-control" name="state" id="state" required>
+                        <option value=""></option>
+                        <option value="AK">AK</option>
+                        <option value="AL">AL</option>
+                        <option value="AR">AR</option>
+                        <option value="AZ">AZ</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DC">DC</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="IA">IA</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="MA">MA</option>
+                        <option value="MD">MD</option>
+                        <option value="ME">ME</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MO">MO</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="NC">NC</option>
+                        <option value="ND">ND</option>
+                        <option value="NE">NE</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NV">NV</option>
+                        <option value="NY">NY</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VA">VA</option>
+                        <option value="VT">VT</option>
+                        <option value="WA">WA</option>
+                        <option value="WI">WI</option>
+                        <option value="WV">WV</option>
+                        <option value="WY">WY</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>     
+            </form>
+            <br>
+            <div class="col-lg-2 pull-right">
+                <img src="http://www.zillow.com/widgets/GetVersionedResource.htm?path=/static/logos/Zillowlogo_150x40_rounded.gif" width="150" height="40" alt="Zillow Real Estate Search" />
+            </div>
+            <br/>
+            <br/>
+            <div class="col-lg-12">
+                <hr/>
+            </div>
+            <div class="col-lg-12">
+                <div class="spanMessageDiv">
+                    <span id="messageSpan" style="text-align: center"></span>
+                    <input type="hidden" id="hiddenSign" />
+                    <input type="hidden" id="imgSrc" />
+                </div>
+            </div>    
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10">
+                <br/>
+                <br/>
+                <div class="tabbable" id="tabData" style="display: none;"> <!-- style="display: none;" -->
+                    <ul class="nav nav-tabs" id="tabs">
+                        <li class="active"><a href="#tabBasicInfo" data-toggle="tab">Basic Info</a></li>
+                        <li><a href="#tabHistory" data-toggle="tab">Historical Zestimates</a></li>
+                    </ul>
+                    <div class="tab-content">
+    				    <div class="tab-pane active" id="tabBasicInfo">
+                             <div class="table-responsive">
+                                <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                    <th colspan="3">See more details for <span id="captionUrl"></span> on Zillow</th>
+                                    <td colspan="1" align="right"><button class="btn btn-facebook" id="fbButton">Share on <font style="font-weight: bold">Facebook</font></button></td></tr>
+                                    <tr align="left">
+                                        <th>Property Type:</th>
+                                        <td id="propType"></td>
+                                        <th>Last Sold Price:</th>
+                                        <td id="lastSoldPrice"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Year Built:</th>
+                                        <td id="yearBuilt"></td>
+                                        <th>Last Sold Date:</th>
+                                        <td id="lastSoldDate"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Lot Size:</th>
+                                        <td id="lotSize"></td>
+                                        <th>Zestimate&reg; Property Estimate as of <span id="zestDate"></span> :</th>
+                                        <td id="zestEstimate"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Finished Area:</th>
+                                        <td id="finishedArea"></td>
+                                        <th>30 Days Overall Change:</th>
+                                        <td id="thirtOverallChange"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Bathrooms:</th>
+                                        <td id="bathrooms"></td>
+                                        <th>All Time Property Range:</th>
+                                        <td id="allTimeRange"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Bedrooms:</th>
+                                        <td id="bedrooms"></td>
+                                        <th>Rent Zestimate&reg; Valuation as of <span id="rentZestDate"></span> :</th>
+                                        <td id="rentZest"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Tax Assessment Year:</th>
+                                        <td id="taxAssessYear"></td>
+                                        <th>30 Days Rent Change:</th>
+                                        <td id="thirtyOverallChange"></td>
+                                    </tr>
+                                    <tr align="left">
+                                        <th>Tax Assessment:</th>
+                                        <td id="taxAssess"></td>
+                                        <th>All Time Rent Change:</th>
+                                        <td id="allTimeRentChange"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabHistory">
+                            <div id="theCarousel" class="carousel slide">
+                             <!-- Indicators -->
+                              <ol class="carousel-indicators">
+                                <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#theCarousel" data-slide-to="1"></li>
+                                <li data-target="#theCarousel" data-slide-to="2"></li>
+                              </ol>
+                              <!-- Wrapper for slides -->
+                              <div class="carousel-inner">
+                                <div class="item active">
+                                  <img id="past1Year" class="center-block">
+                                  <div class="carousel-caption">
+                                      <h4>Historical Zestimates for past 1 year</h4>
+                                      <p id="cr-cap-1"></p>
+                                  </div>
+                                </div>
+                                <div class="item">
+                                  <img id="past5Year" class="center-block">
+                                  <div class="carousel-caption">
+                                      <h4>Historical Zestimates for past 5 years</h4>
+                                      <p id="cr-cap-2"></p>
+                                  </div>
+                                </div>
+                                <div class="item">
+                                  <img id="past10Year" class="center-block">
+                                  <div class="carousel-caption">
+                                      <h4>Historical Zestimates for past 10 years</h4>
+                                      <p id="cr-cap-3"></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Controls -->
+                              <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                              </a>
+                              <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                              </a>
+                            </div> <!-- Carousel -->
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-12">
+            <div id="footerDiv" class="footerDiv">
+		          &copy; Zillow, Inc., 2006-2014. Use is subject to <a href="http://www.zillow.com/corp/Terms.htm"> Terms of Use                     </a><br/><a href="http://www.zillow.com/wikipages/What-is-a-Zestimate/"> What's a Zestimate? </a>
+	       </div>
+        </div>         
+    <script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/hw8_js.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my-hw8.css">
+    </body>
+</html>
